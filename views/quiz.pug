@@ -1,0 +1,22 @@
+extends layout
+
+block content
+ if show
+  form(method="post")
+    p Twoja ulubiona marka to ?
+    ul
+      each item in data
+        li 
+          label=item.title
+          br
+          input(type='radio' name='quiz' value=item._id)
+      input(type='submit' value='Zagłosuj')
+ else
+    h1 Dziekujemy za głos.
+    p Wynik
+    nav
+      ul
+      each item in data
+        li(class='vote') #{item.title} głosów: #{item.vote} (#{Math.round(item.vote/sum*100)}%)
+    p Oddanych głosow: #{sum}
+ 
